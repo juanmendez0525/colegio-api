@@ -5,7 +5,23 @@ require('dotenv').config(); // Cargar variables de entorno
 
 const PORT = process.env.PORT || 3000;
 
+// =================================================================
+// 🚨 CAMBIO CLAVE 1: Importar la librería CORS
+const cors = require('cors');
+// =================================================================
+
+
 // MIDDLEWARES
+// =================================================================
+// 🚨 CAMBIO CLAVE 2: Aplicar el middleware CORS
+// Permite peticiones desde CUALQUIER origen ('*'), necesario para que Flutter Web funcione desde localhost.
+app.use(cors({
+    origin: '*', 
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+    allowedHeaders: ['Content-Type', 'Authorization'], // Importante para futuros tokens de seguridad
+}));
+// =================================================================
+
 app.use(express.json()); // Para manejar peticiones JSON
 
 // IMPORTAR RUTAS
@@ -18,9 +34,6 @@ const materiasRoutes = require('./src/routes/materias.routes');
 const notasRoutes = require('./src/routes/notas.routes');
 
 
-
-
-
 // USAR RUTAS
 app.use('/api/estudiantes', estudiantesRoutes);
 app.use('/api/acudientes', acudientesRoutes);
@@ -30,11 +43,9 @@ app.use('/api/grados', gradosRoutes);
 app.use('/api/materias', materiasRoutes);
 app.use('/api/notas', notasRoutes);
 
-// Ruta de prueba
-// 🌈 Ruta principal con diseño visual
-// 🌈 Ruta principal con diseño visual e información de rutas
+// Ruta principal con diseño visual e información de rutas
 app.get('/', (req, res) => {
-  const html = `
+  const html = `
   <!DOCTYPE html>
   <html lang="es">
   <head>
@@ -353,15 +364,14 @@ app.get('/', (req, res) => {
   </body>
   </html>
   `;
-  res.send(html);
+  res.send(html);
 });
 
 
 
 // INICIO DEL SERVIDOR
 app.listen(PORT, () => {
-    console.log(`Servidor Express escuchando en http://localhost:${PORT}`);
-    // Opcional: Ejecuta una prueba de conexión a la BD aquí si quieres
-    require('./db/db'); 
+    console.log(`Servidor Express escuchando en http://localhost:${PORT}`);
+    // Opcional: Ejecuta una prueba de conexión a la BD aquí si quieres
+    require('./db/db'); 
 });
-
