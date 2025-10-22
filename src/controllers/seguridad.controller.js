@@ -3,7 +3,8 @@
 // 💡 NOTA: La ruta '../db/db' ASUME que:
 // 1. El archivo actual está en 'src/controllers/'
 // 2. El archivo de conexión está en 'db/db.js' (desde la raíz)
-const db = require('../../db/db'); 
+// src/controllers/seguridad.controller.js
+const db = require('../../db/db'); // ✅ Si el archivo es db/db.js
 
 // Función para obtener la contraseña
 const getContrasenaAdmin = async (req, res) => {

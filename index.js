@@ -368,10 +368,11 @@ app.get('/', (req, res) => {
 });
 
 
+// index.js (Línea de inicio)
 
-// INICIO DEL SERVIDOR
 app.listen(PORT, () => {
-    console.log(`Servidor Express escuchando en http://localhost:${PORT}`);
-    // Opcional: Ejecuta una prueba de conexión a la BD aquí si quieres
-    require('./db/db'); 
+    console.log(`Servidor Express escuchando en http://localhost:${PORT}`);
+    // ASEGÚRATE de que esta ruta sea correcta:
+    require('./db/db'); // ✅ Si es db/db.js
+    // require('./db'); // ❌ Si es db.js en la raíz
 });
