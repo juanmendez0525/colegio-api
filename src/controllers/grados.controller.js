@@ -6,14 +6,15 @@ const getGrados = async (req, res) => {
     try {
         // Podrías usar un JOIN para obtener el nombre del docente asociado:
         const result = await db.query(
-            `SELECT
-    g.id_grado,
-    g.nombre_grado,
-    g.id_docente,
-    d.nombre AS nombre_docente,
-    d.apellido AS apellido_docente
-FROM grados g
-LEFT JOIN docentes d ON g.id_docente = d.id_docente`
+            `SELECT 
+                g.id_grado, 
+                g.nombre_grado, 
+                g.id_docente,
+                d.nombre AS nombre_docente,
+                d.apellido AS apellido_docente
+             FROM grados g
+             LEFT JOIN docentes d ON g.id_docente = d.id_docente
+             ORDER BY g.nombre_grado`
         );
         res.json(result.rows);
     } catch (error) {
