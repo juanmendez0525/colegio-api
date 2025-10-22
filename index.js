@@ -32,7 +32,7 @@ const docentesRoutes = require('./src/routes/docentes.routes');
 const gradosRoutes = require('./src/routes/grados.routes');
 const materiasRoutes = require('./src/routes/materias.routes');
 const notasRoutes = require('./src/routes/notas.routes');
-
+const seguridadRoutes = require('./src/routes/seguridad.routes');
 
 // USAR RUTAS
 app.use('/api/estudiantes', estudiantesRoutes);
@@ -42,7 +42,7 @@ app.use('/api/docentes', docentesRoutes);
 app.use('/api/grados', gradosRoutes);
 app.use('/api/materias', materiasRoutes);
 app.use('/api/notas', notasRoutes);
-
+app.use('/api/seguridad', seguridadRoutes);
 // Ruta principal con diseño visual e información de rutas
 app.get('/', (req, res) => {
   const html = `
