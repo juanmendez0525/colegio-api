@@ -9,6 +9,12 @@ create table acudientes (
     parentesco varchar(50)
 );
 
+create table seguridad (
+    id int primary key,
+    contrasena_admin varchar
+);
+
+
 -- Tabla cursos
 create table cursos (
 	id_cursos serial primary key,
@@ -106,6 +112,9 @@ INSERT INTO cursos (nom_cursos) VALUES
 ('Curso B'),
 ('Curso C');
 
+INSERT INTO seguridad (id, contrasena_admin) VALUES
+(1,'@camilo2209');
+
 
 INSERT INTO docentes (nombre, apellido, documento, correo, telefono, materia) VALUES
 ('María','Herrera',1001,'mariah@colegio.com','3002000001','Matemáticas'),
@@ -132,6 +141,8 @@ INSERT INTO grados (nombre_grado, id_docente) VALUES
 ('Octavo',9),
 ('Noveno',10),
 ('Décimo',1);
+
+select * from grados;
 
 
 INSERT INTO materias (nombre_materia, id_docente) VALUES
