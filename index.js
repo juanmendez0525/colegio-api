@@ -32,7 +32,8 @@ const docentesRoutes = require('./src/routes/docentes.routes');
 const gradosRoutes = require('./src/routes/grados.routes');
 const materiasRoutes = require('./src/routes/materias.routes');
 const notasRoutes = require('./src/routes/notas.routes');
-const seguridadRoutes = require('./src/routes/seguridad.routes');
+const contraseñaRoutes = require('./src/routes/contraseña.routes');
+
 
 // USAR RUTAS
 app.use('/api/estudiantes', estudiantesRoutes);
@@ -42,7 +43,9 @@ app.use('/api/docentes', docentesRoutes);
 app.use('/api/grados', gradosRoutes);
 app.use('/api/materias', materiasRoutes);
 app.use('/api/notas', notasRoutes);
-app.use('/api/seguridad', seguridadRoutes);
+app.use('/api/contraseña', contraseñaRoutes);
+
+
 // Ruta principal con diseño visual e información de rutas
 app.get('/', (req, res) => {
   const html = `
@@ -368,11 +371,10 @@ app.get('/', (req, res) => {
 });
 
 
-// index.js (Línea de inicio)
 
+// INICIO DEL SERVIDOR
 app.listen(PORT, () => {
-    console.log(`Servidor Express escuchando en http://localhost:${PORT}`);
-    // ASEGÚRATE de que esta ruta sea correcta:
-    require('./db/db'); // ✅ Si es db/db.js
-    // require('./db'); // ❌ Si es db.js en la raíz
+    console.log(`Servidor Express escuchando en http://localhost:${PORT}`);
+    // Opcional: Ejecuta una prueba de conexión a la BD aquí si quieres
+    require('./db/db'); 
 });

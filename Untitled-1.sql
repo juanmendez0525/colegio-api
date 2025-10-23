@@ -200,3 +200,5 @@ CROSS JOIN (VALUES ('1'), ('2'), ('3'), ('4')) AS p(periodo);
 
 select * from seguridad;
 
+
+
