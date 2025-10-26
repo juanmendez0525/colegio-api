@@ -1,7 +1,7 @@
 const db = require('../../db/db');
 
 // Obtener todos los acudientes
-const getContraseña = async (req, res) => {
+const getContrasena = async (req, res) => {
     try {
         const result = await db.query('SELECT contrasena_admin FROM seguridad WHERE id = 1');
         res.json(result.rows);
@@ -12,5 +12,5 @@ const getContraseña = async (req, res) => {
 };
 
 module.exports = {
-    getContraseña,
+    getContrasena,
 };
