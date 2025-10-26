@@ -5,23 +5,7 @@ require('dotenv').config(); // Cargar variables de entorno
 
 const PORT = process.env.PORT || 3000;
 
-// =================================================================
-// 🚨 CAMBIO CLAVE 1: Importar la librería CORS
-const cors = require('cors');
-// =================================================================
-
-
 // MIDDLEWARES
-// =================================================================
-// 🚨 CAMBIO CLAVE 2: Aplicar el middleware CORS
-// Permite peticiones desde CUALQUIER origen ('*'), necesario para que Flutter Web funcione desde localhost.
-app.use(cors({
-    origin: '*', 
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], 
-    allowedHeaders: ['Content-Type', 'Authorization'], // Importante para futuros tokens de seguridad
-}));
-// =================================================================
-
 app.use(express.json()); // Para manejar peticiones JSON
 
 // IMPORTAR RUTAS
@@ -32,7 +16,9 @@ const docentesRoutes = require('./src/routes/docentes.routes');
 const gradosRoutes = require('./src/routes/grados.routes');
 const materiasRoutes = require('./src/routes/materias.routes');
 const notasRoutes = require('./src/routes/notas.routes');
-const contraseñaRoutes = require('./src/routes/contraseña.routes');
+const contrasenaRoutes = require('./src/routes/contrasena.routes'); // ⬅️ NUEVO
+
+
 
 
 // USAR RUTAS
@@ -43,12 +29,11 @@ app.use('/api/docentes', docentesRoutes);
 app.use('/api/grados', gradosRoutes);
 app.use('/api/materias', materiasRoutes);
 app.use('/api/notas', notasRoutes);
-app.use('/api/contraseña', contraseñaRoutes);
+app.use('/api/seguridad', contrasenaRoutes); // ⬅️ NUEVO
 
 
-// Ruta principal con diseño visual e información de rutas
 app.get('/', (req, res) => {
-  const html = `
+  const html = `
   <!DOCTYPE html>
   <html lang="es">
   <head>
@@ -367,14 +352,15 @@ app.get('/', (req, res) => {
   </body>
   </html>
   `;
-  res.send(html);
+  res.send(html);
 });
 
 
 
 // INICIO DEL SERVIDOR
 app.listen(PORT, () => {
-    console.log(`Servidor Express escuchando en http://localhost:${PORT}`);
-    // Opcional: Ejecuta una prueba de conexión a la BD aquí si quieres
-    require('./db/db'); 
+    console.log(`Servidor Express escuchando en http://localhost:${PORT}`);
+    // Opcional: Ejecuta una prueba de conexión a la BD aquí si quieres
+    require('./db/db'); 
 });
+
